@@ -127,7 +127,7 @@ class HassGateView(HomeAssistantView):
 
     async def get(self, request):    
         _raw_path = request.rel_url.raw_path
-        _path = os.path.dirname(__file__) + '/more-info-shbus.js'
+        _path = os.path.dirname(__file__) + '/local/more-info-shbus.js'
         return FileResponse(_path)
 
     async def post(self, request):
