@@ -1,0 +1,11 @@
+{
+  "domain": "ha_shbus",
+  "name": "ha_shbus",
+  "documentation": "https://github.com/shaonianzhentan/ha_shbus",
+  "requirements": [
+    "beautifulsoup4==4.7.1",
+    "lxml==4.3.2"
+  ],
+  "dependencies": [],
+  "codeowners": []
+}
