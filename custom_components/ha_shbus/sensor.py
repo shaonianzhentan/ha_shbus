@@ -47,7 +47,8 @@ _LOGGER = logging.getLogger(__name__)
 TIME_BETWEEN_UPDATES = timedelta(seconds=600)
 
 DOMAIN = 'ha_shbus'
-VERSION = '1.1'
+VERSION = '1.1.1'
+ROOT_PATH = '/ha_shbus-api/' + VERSION
 
 CONF_DIRECTION = "direction"
 CONF_STOP_ID = "stop_id"
@@ -112,9 +113,16 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
 -------------------------------------------------------------------''')
     global SH_BUS
     SH_BUS = bus    
+
+    # 注册静态目录
+    local = hass.config.path("custom_components/ha_shbus/local")
+    if os.path.isdir(local):
+        hass.http.register_static_path(ROOT_PATH, local, False)
+
+
     hass.http.register_view(HassGateView)
     # 注册shbus状态卡片
-    hass.components.frontend.add_extra_js_url(hass, '/' + DOMAIN + '-api?v=' + VERSION)
+    hass.components.frontend.add_extra_js_url(hass, ROOT_PATH + '/more-info-shbus.js')
     async_add_devices([ShBus(name, hass, bus, stops, stop_id, stop_name)], True)
  
 ##### 网关控制
@@ -123,12 +131,7 @@ class HassGateView(HomeAssistantView):
 
     url = '/' + DOMAIN + '-api'
     name = DOMAIN
-    requires_auth = False
-
-    async def get(self, request):    
-        _raw_path = request.rel_url.raw_path
-        _path = os.path.dirname(__file__) + '/local/more-info-shbus.js'
-        return FileResponse(_path)
+    requires_auth = True
 
     async def post(self, request):
         """Update state of entity."""
