@@ -74,7 +74,7 @@ class MoreInfoShbus extends HTMLElement {
                   // 发送查询请求
                   fetch('/ha_shbus-api',{method:'post',
                       body:JSON.stringify({
-                          name: attr.name,
+                          name: attr.bus_name,
                           direction: attr.direction,
                           stop_id: index + 1
                       }),
@@ -116,17 +116,7 @@ class MoreInfoShbus extends HTMLElement {
       // console.log('当 custom element从文档DOM中删除时，被调用。')
       this.shadow.querySelector('.line').innerHTML = ''
   }
-  
-  // 当 custom element被移动到新的文档时，被调用。
-  adoptedCallback(){
-      console.log('当 custom element被移动到新的文档时，被调用。')
-  }
-  
-  // 当 custom element增加、删除、修改自身属性时，被调用。
-  attributeChangedCallback(){
-      console.log('当 custom element增加、删除、修改自身属性时，被调用。')
-  }
-      
+        
   get stateObj(){
       return this._stateObj
   }
@@ -134,9 +124,7 @@ class MoreInfoShbus extends HTMLElement {
   set stateObj(value){
       this._stateObj = value
       this.render()
-  }    
-  
-  static get observedAttributes() { return ['attr']; }
+  }
 }
 
 customElements.define('more-info-shbus', MoreInfoShbus);

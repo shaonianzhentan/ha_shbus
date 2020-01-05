@@ -47,7 +47,7 @@ _LOGGER = logging.getLogger(__name__)
 TIME_BETWEEN_UPDATES = timedelta(seconds=600)
 
 DOMAIN = 'ha_shbus'
-VERSION = '1.0'
+VERSION = '1.1'
 
 CONF_DIRECTION = "direction"
 CONF_STOP_ID = "stop_id"
@@ -156,6 +156,7 @@ class ShBus(Entity):
         self._direction = stops['direction']
                 
         self._attr = {
+            "bus_name": name,
             "from": stops['from'],
             "to": stops['to'], 
             "stop_name": stop_name,

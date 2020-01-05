@@ -1,0 +1,6 @@
+{
+    "name": "上海公交",
+    "country": "CN",
+    "render_readme": true,
+    "domains": ["sensor"]
+  }
