@@ -74,7 +74,7 @@ class MoreInfoShbus extends HTMLElement {
                   // 发送查询请求
                   fetch('/ha_shbus-api',{method:'post',
                       body:JSON.stringify({
-                          name: attr.bus_name,
+                          name: attr.name,
                           direction: attr.direction,
                           stop_id: index + 1
                       }),

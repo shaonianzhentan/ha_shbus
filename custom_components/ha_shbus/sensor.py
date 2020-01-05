@@ -156,7 +156,6 @@ class ShBus(Entity):
         self._direction = stops['direction']
                 
         self._attr = {
-            "bus_name": name,
             "from": stops['from'],
             "to": stops['to'], 
             "stop_name": stop_name,
@@ -203,7 +202,7 @@ class ShBus(Entity):
         if self._state is not None:
             attr = self._attr
             return {
-                "name": self.name,
+                "name": self._friendly_name,
                 "from": attr['from'],
                 "to": attr['to'],              
                 "stop_name": attr['stop_name'],
