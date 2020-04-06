@@ -4,7 +4,7 @@
   "documentation": "https://github.com/shaonianzhentan/ha_shbus",
   "requirements": [
     "beautifulsoup4==4.7.1",
-    "lxml==4.3.2"
+    "lxml==4.5"
   ],
   "dependencies": [],
   "codeowners": []
